@@ -1,0 +1,39 @@
+﻿@model IEnumerable<PetStore.Models.Animal.AnimalType>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.AnimalTypeID }) |   
+            @{ var petCount = item.Pets != null ? item.Pets.Count() : 0; }
+            @Html.ActionLink("Delete", "Delete", new { id=item.AnimalTypeID }, new { @class = "delete-animal",data_petcount = petCount})
+        </td>
+    </tr>
+}
+
+</table>
+
+
+
+

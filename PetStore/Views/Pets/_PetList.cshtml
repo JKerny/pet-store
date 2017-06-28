@@ -1,0 +1,51 @@
+﻿@model PetStore.Models.Pet.PetListing
+
+<table class="table">
+    <tr>
+
+        <th>
+            Name
+        </th>
+        <th>
+            Animal Type
+        </th>
+        <th>
+            Date Of Birth
+        </th>
+        <th>
+            Weight
+        </th>
+        <th>
+            Description
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Pets)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnimalType.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfBirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PetID }) |
+
+
+                @Html.ActionLink("Delete", "Delete", new { id = item.PetID }, new { @class = "delete-pet" })
+            </td>
+        </tr>
+    }
+
+</table>
