@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PetStore.Repository
 {
-    public interface IAnimalTypeRepositoryService
+    public interface IAnimalService
     {
         List<AnimalType> GetAllAnimalTypes();
         AnimalType GetAnimalTypeById(Guid id);
@@ -16,10 +16,10 @@ namespace PetStore.Repository
         void DeleteAnimalType(Guid id);        
     }
 
-    public class AnimalTypeRepositoryService : IAnimalTypeRepositoryService
+    public class AnimalService : IAnimalService
     {
         IRepositoryBaseService _repositoryBase;
-        public AnimalTypeRepositoryService(IRepositoryBaseService repositoryBase)
+        public AnimalService(IRepositoryBaseService repositoryBase)
         {
             _repositoryBase = repositoryBase;
         }

@@ -15,8 +15,8 @@ namespace PetStore.Controllers
 {
     public class AnimalTypeController : BaseController
     {
-        private IAnimalTypeRepositoryService _animalTypeService;
-        public AnimalTypeController(IAnimalTypeRepositoryService animalTypeService)
+        private IAnimalService _animalTypeService;
+        public AnimalTypeController(IAnimalService animalTypeService)
         {;
             _animalTypeService = animalTypeService;
         }
