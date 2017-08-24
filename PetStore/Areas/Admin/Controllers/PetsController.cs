@@ -4,11 +4,12 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using PetStore.Models.Pet;
+using PetStore.Areas.Admin.Models.Pet;
 using PetStore.Repository;
 using System.Collections;
+using System.Collections.Generic;
 
-namespace PetStore.Controllers
+namespace PetStore.Areas.Admin.Controllers
 {
     public class PetsController : BaseController
     {
@@ -22,35 +23,35 @@ namespace PetStore.Controllers
         }
         [HttpGet]
         public ActionResult Index()
-        {          
+        {
             var model = new PetListing()
             {
                 Pets = _petRepository.GetAllPets(),
                 AnimalTypes = new SelectList(_animalService.GetAllAnimalTypes(), "AnimalTypeID", "Title")
-            };          
-           
-           return View(model);
+            };
+
+            return View(model);
         }
 
         public ActionResult Search(Guid? animalTypeID)
         {
             if (animalTypeID != null)
-            {               
+            {
                 var model = new PetListing()
                 {
                     AnimalTypes = new SelectList(_animalService.GetAllAnimalTypes(), "AnimalTypeID", "Title"),
-                    Pets = _petRepository.GetAllPets().Where(x => x.AnimalTypeID == animalTypeID).OrderBy(x => x.Title).ToList()
-            };
+                    Pets = _petRepository.GetAllPets().Where(x => x.AnimalTypeID == animalTypeID).OrderBy(x => x.Title).Take(10).ToList()
+                };
                 return PartialView("_PetList", model);
             }
             return HttpNotFound();
         }
-    
+
 
         public ActionResult Create()
         {
             var model = new Pet();
-            model.AnimalTypes = new SelectList(_animalService.GetAllAnimalTypes(), "AnimalTypeId","Title");
+            model.AnimalTypes = new SelectList(_animalService.GetAllAnimalTypes(), "AnimalTypeId", "Title");
             return View(model);
         }
 
@@ -58,18 +59,18 @@ namespace PetStore.Controllers
         public ActionResult Create([Bind(Include = "PetID,Title,DateOfBirth,Weight,Description,AnimalTypeID")] Pet pet)
         {
             if (ModelState.IsValid)
-            {                
+            {
                 _petRepository.SavePet(pet);
                 return RedirectToAction("Index");
             }
 
-           var model = new Pet();
+            var model = new Pet();
             model.AnimalTypes = new SelectList(_animalService.GetAllAnimalTypes(), "AnimalTypeId", "Title");
             return View(model);
         }
 
         public ActionResult Edit(Guid id)
-        {                     
+        {
             if (id != null)
             {
                 var model = _petRepository.GetPetById(id);
@@ -79,7 +80,7 @@ namespace PetStore.Controllers
                     return View(model);
                 }
             }
-            throw new HttpException(404, "Pet Not Found");                      
+            throw new HttpException(404, "Pet Not Found");
         }
 
         [HttpPost]
@@ -99,17 +100,33 @@ namespace PetStore.Controllers
             throw new HttpException(404, "System Error");
         }
 
-       
+
         public ActionResult Delete(Guid id)
         {
             if (id != Guid.Empty)
             {
                 _petRepository.DeletePet(id);
-                return RedirectToAction("Index");               
+                return RedirectToAction("Index");
             }
             throw new HttpException(404, "Pet Not Found");
         }
 
-       
+        [HttpGet]
+        public ActionResult GetPaginatedData(int pageIndex, int pageSize)
+        {
+            var pets = _petRepository.GetAllPets().Skip(pageIndex * pageSize).Take(pageSize).ToList();
+            List<PetApiModel> petsModel = new List<PetApiModel>();
+            foreach (var pet in pets)
+            {
+                petsModel.Add(new PetApiModel
+                {
+                    Name = pet.Title
+                });
+            }
+            return Json(petsModel, JsonRequestBehavior.AllowGet);
+        }
+
+
+
     }
 }

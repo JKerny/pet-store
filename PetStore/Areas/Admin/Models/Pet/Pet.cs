@@ -1,5 +1,5 @@
 ﻿using PetStore.Custom_Validation;
-using PetStore.Models.Animal;
+using PetStore.Areas.Admin.Models.Animal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace PetStore.Models.Pet
+namespace PetStore.Areas.Admin.Models.Pet
 {
     public class Pet
     {

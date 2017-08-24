@@ -1,6 +1,6 @@
 ﻿﻿using Autofac;
 using Autofac.Integration.Mvc;
-using PetStore.Controllers;
+using PetStore.Areas.Admin.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

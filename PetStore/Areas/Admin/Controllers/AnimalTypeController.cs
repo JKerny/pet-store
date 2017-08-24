@@ -6,12 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using PetStore.Models;
+using PetStore.Areas.Admin.Models;
 using PetStore.PetStore.DAL.Context;
-using PetStore.Models.Animal;
+using PetStore.Areas.Admin.Models.Animal;
 using PetStore.Repository;
 
-namespace PetStore.Controllers
+namespace PetStore.Areas.Admin.Controllers
 {
     public class AnimalTypeController : BaseController
     {

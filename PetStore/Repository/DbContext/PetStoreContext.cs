@@ -1,6 +1,6 @@
-﻿using PetStore.Models;
-using PetStore.Models.Animal;
-using PetStore.Models.Pet;
+﻿using PetStore.Areas.Admin.Models;
+using PetStore.Areas.Admin.Models.Animal;
+using PetStore.Areas.Admin.Models.Pet;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

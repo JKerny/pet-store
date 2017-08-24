@@ -1,0 +1,22 @@
+﻿@model PetStore.Areas.Admin.Models.Pet.PetListing
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/areas/admin/Views/Shared/_Layout.cshtml";
+}
+<div id="container">
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <div>
+        @using (Ajax.BeginForm("Search", "Pets", null, new AjaxOptions { HttpMethod = "get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "petList" }, null))
+        {
+            @Html.DropDownList("AnimalTypeID", Model.AnimalTypes, string.Empty);
+            <input type="submit" value="Search" class="btn btn-primary" />
+        }
+    </div>
+    <div id="petList">
+        @Html.Partial("_PetList", Model)
+    </div>
+</div>

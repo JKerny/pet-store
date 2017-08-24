@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace PetStore.Controllers
+namespace PetStore.Areas.Admin.Controllers
 {
     public class BaseController : Controller
     {

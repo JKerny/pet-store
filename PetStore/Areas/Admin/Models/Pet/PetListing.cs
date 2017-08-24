@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace PetStore.Models.Pet
+namespace PetStore.Areas.Admin.Models.Pet
 {
     public class PetListing
     {

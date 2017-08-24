@@ -1,4 +1,4 @@
-﻿using PetStore.Models.Animal;
+﻿using PetStore.Areas.Admin.Models.Animal;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

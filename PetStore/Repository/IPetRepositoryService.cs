@@ -1,4 +1,4 @@
-﻿using PetStore.Models.Pet;
+﻿using PetStore.Areas.Admin.Models.Pet;
 using PetStore.PetStore.DAL;
 using PetStore.PetStore.DAL.Context;
 using System;
