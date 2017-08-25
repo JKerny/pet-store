@@ -17,7 +17,7 @@ namespace PetStore.Areas.Admin.Models.Pet
         public Guid AnimalTypeID { get; set; }
 
         [Required]
-        public string Title { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [DisplayName("Date Of Birth")]

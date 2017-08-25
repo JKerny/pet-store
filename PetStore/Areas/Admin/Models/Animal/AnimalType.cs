@@ -11,7 +11,7 @@ namespace PetStore.Areas.Admin.Models.Animal
     {
         public Guid AnimalTypeID { get; set; }
         [Required]
-        public string Title { get; set; }
+        public string Name { get; set; }
         public virtual ICollection<Pet.Pet> Pets { get; set; }
     }
 }

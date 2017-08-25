@@ -40,7 +40,7 @@ namespace PetStore.Areas.Admin.Controllers
                 var model = new PetListing()
                 {
                     AnimalTypes = new SelectList(_animalService.GetAllAnimalTypes(), "AnimalTypeID", "Title"),
-                    Pets = _petRepository.GetAllPets().Where(x => x.AnimalTypeID == animalTypeID).OrderBy(x => x.Title).Take(10).ToList()
+                    Pets = _petRepository.GetAllPets().Where(x => x.AnimalTypeID == animalTypeID).OrderBy(x => x.Name).Take(10).ToList()
                 };
                 return PartialView("_PetList", model);
             }
@@ -120,7 +120,7 @@ namespace PetStore.Areas.Admin.Controllers
             {
                 petsModel.Add(new PetApiModel
                 {
-                    Name = pet.Title
+                    Name = pet.Name
                 });
             }
             return Json(petsModel, JsonRequestBehavior.AllowGet);
