@@ -169,7 +169,6 @@
     <Compile Include="Areas\Admin\Controllers\TestController.cs" />
     <Compile Include="Areas\Admin\Models\Animal\AnimalType.cs" />
     <Compile Include="Areas\Admin\Models\Pet\Pet.cs" />
-    <Compile Include="Areas\Admin\Models\Pet\PetApiModel.cs" />
     <Compile Include="Areas\Admin\Models\Pet\PetListing.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Custom Validation\ValidateDateRange.cs" />

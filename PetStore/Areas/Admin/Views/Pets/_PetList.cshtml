@@ -24,11 +24,11 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                @Html.DisplayFor(modelItem => item.Name)
 
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AnimalType.Title)
+                @Html.DisplayFor(modelItem => item.AnimalType.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateOfBirth)
@@ -50,6 +50,3 @@
 
 </table>
 
-<div id="progress" style="display:none">
-    <h4>Loading...</h4>
-</div>

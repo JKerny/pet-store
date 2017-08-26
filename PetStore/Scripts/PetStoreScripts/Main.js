@@ -28,18 +28,25 @@
     });
     var pageSize = 10;
     var pageIndex = 1;
-    function GetPetData() {
-        debugger;
+    function GetPetData() {        
         $.ajax(
         {
             type: 'GET',
-            url: '/pets/GetPaginatedData',
+            url: '/home/GetPaginatedPetData',
             data: { "pageindex": pageIndex, "pagesize": pageSize },
             dataType: 'json',
             success: function (data) {
                 if (data != null) {
                     for (var i = 0; i < data.length; i++) {
-                        $("#container").append("<h2>" + data[i].Name + "</h2>");
+                        $("table")
+                            .append(
+                            "<tr>" +
+                            "<td>" + data[i].AnimalType + "</td>" +
+                            "<td>" + data[i].Name + "</td>" +
+                            "<td>" + data[i].DateOfBirth + "</td>" +
+                            "<td>" + data[i].Weight + "</td>" +
+                            "</tr>"
+                            );
                     }
                     pageIndex++;
                 }

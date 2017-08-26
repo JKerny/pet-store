@@ -31,7 +31,7 @@ namespace PetStore.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create([Bind(Include = "AnimalTypeID,Title")] AnimalType animalType)
+        public ActionResult Create([Bind(Include = "AnimalTypeID,Name")] AnimalType animalType)
         {
             if (ModelState.IsValid)
             {

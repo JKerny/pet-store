@@ -14,8 +14,6 @@ namespace PetStore.Models.Pet
         public DateTime DateOfBirth { get; set; }
 
         public double Weight { get; set; }
-
-        public string Description { get; set; }
         
     }
 }

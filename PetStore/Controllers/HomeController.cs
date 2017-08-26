@@ -35,5 +35,24 @@ namespace PetStore.Controllers
 
             return View(model);
         }
+        [HttpGet]
+        public ActionResult GetPaginatedPetData(int pageIndex, int pageSize)
+        {
+            var pets = _petService.GetAllPets().Skip(pageIndex * pageSize).Take(pageSize).ToList();
+            var model = new List<Pet>();
+            
+            foreach (var pet in pets)
+            {
+                model.Add(new Pet
+                {
+                    Name = pet.Name,
+                    DateOfBirth = pet.DateOfBirth,
+                    AnimalType = pet.AnimalType.Name,
+                    Weight = pet.Weight
+                }
+                );
+            }
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
     }
 }
