@@ -22,7 +22,16 @@ namespace PetStore.Areas.Admin.Controllers
         }
         public ActionResult Index()
         {
-            return View(_animalTypeService.GetAllAnimalTypes());
+            List<AnimalType> animalTypes = new List<AnimalType>();
+            foreach(var animal in _animalTypeService.GetAllAnimalTypes())
+            {
+                animalTypes.Add(new AnimalType
+                {
+                   AnimalTypeID = animal.AnimalTypeId,
+                   Name = animal.Name
+                });
+            }
+            return View(animalTypes);
         }
 
         public ActionResult Create()
