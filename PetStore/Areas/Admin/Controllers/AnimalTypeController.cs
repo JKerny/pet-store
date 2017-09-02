@@ -31,11 +31,17 @@ namespace PetStore.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create([Bind(Include = "AnimalTypeID,Name")] AnimalType animalType)
+        public ActionResult Create(AnimalType animalType)
         {
+            var animal = new Repository.PocoClasses.AnimalType()
+            {
+                AnimalTypeId = animalType.AnimalTypeID,
+                Name = animalType.Name
+            };
+
             if (ModelState.IsValid)
             {
-                _animalTypeService.SaveAnimalType(animalType);
+                _animalTypeService.SaveAnimalType(animal);
                 return RedirectToAction("Index");
             }
 
@@ -46,7 +52,7 @@ namespace PetStore.Areas.Admin.Controllers
         {
             if (id != Guid.Empty)
             {
-                AnimalType animalType = _animalTypeService.GetAnimalTypeById(id);
+                var animalType = _animalTypeService.GetAnimalTypeById(id);
                 if (animalType != null)
                 {
                     return View(animalType);
@@ -56,11 +62,11 @@ namespace PetStore.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "AnimalTypeID,Title")] AnimalType animalType)
+        public ActionResult Edit(AnimalType animalType)
         {
             if (ModelState.IsValid)
             {
-                _animalTypeService.SaveAnimalType(animalType);
+                //_animalTypeService.SaveAnimalType(animalType);
                 return RedirectToAction("Index");
             }
             return View(animalType);

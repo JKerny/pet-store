@@ -1,5 +1,5 @@
 ﻿using PetStore.Custom_Validation;
-using PetStore.Areas.Admin.Models.Animal;
+using PetStore.Repository.PocoClasses;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,7 +32,7 @@ namespace PetStore.Areas.Admin.Models.Pet
         public string Description {get;set;}
         
         [DisplayName("Select Animal")]
-        public virtual AnimalType AnimalType { get; set; }
+        public AnimalType AnimalType { get; set; }
 
         public IEnumerable<SelectListItem> AnimalTypes { get;set; }
 

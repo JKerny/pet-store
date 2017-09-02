@@ -1,6 +1,5 @@
 ﻿using PetStore.Areas.Admin.Models;
-using PetStore.Areas.Admin.Models.Animal;
-using PetStore.Areas.Admin.Models.Pet;
+using PetStore.Repository.PocoClasses;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

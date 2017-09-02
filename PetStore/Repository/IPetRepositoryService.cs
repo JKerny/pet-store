@@ -1,6 +1,6 @@
-﻿using PetStore.Areas.Admin.Models.Pet;
-using PetStore.PetStore.DAL;
+﻿using PetStore.PetStore.DAL;
 using PetStore.PetStore.DAL.Context;
+using PetStore.Repository.PocoClasses;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -41,9 +41,9 @@ namespace PetStore.Repository
         public void SavePet(Pet pet)
         {
             var _context = _repositoryBase.context;
-            if (pet.PetID == Guid.Empty)
+            if (pet.Id == Guid.Empty)
             {
-                pet.PetID = Guid.NewGuid();
+                pet.Id = Guid.NewGuid();
                 _context.Pet.Add(pet);
                 _context.SaveChanges();
             }

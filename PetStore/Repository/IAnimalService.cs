@@ -1,4 +1,4 @@
-﻿using PetStore.Areas.Admin.Models.Animal;
+﻿using PetStore.Repository.PocoClasses;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -58,9 +58,9 @@ namespace PetStore.Repository
         public void SaveAnimalType(AnimalType animal)
         {
             var _context = _repositoryBase.context;
-            if (animal.AnimalTypeID == Guid.Empty)
+            if (animal.AnimalTypeId == Guid.Empty)
             {
-                animal.AnimalTypeID = Guid.NewGuid();
+                animal.AnimalTypeId = Guid.NewGuid();
                 _context.AnimalType.Add(animal);
                 _context.SaveChanges();
 
