@@ -4,14 +4,13 @@ using System.Linq;
 using System.Web;
 using PetStore.Areas.Admin.Models.Pet;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PetStore.Areas.Admin.Models.Animal
 {
-    public class AnimalType
+    [NotMapped]
+    public class AnimalTypeModel : Repository.PocoClasses.AnimalType
     {
-        public Guid AnimalTypeID { get; set; }
-        [Required]
-        public string Name { get; set; }
-        public virtual ICollection<Pet.Pet> Pets { get; set; }
+       
     }
 }

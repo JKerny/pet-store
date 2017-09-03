@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PetStore.Models.Pet.Pet>
+﻿@model IEnumerable <PetStore.Repository.PocoClasses.Pet>
 <table class="table">
     <tr>
         <th>
@@ -20,7 +20,7 @@
             {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.AnimalType)
+                @Html.DisplayFor(modelItem => item.AnimalType.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)

@@ -21,17 +21,8 @@ namespace PetStore.Areas.Admin.Controllers
             _animalTypeService = animalTypeService;
         }
         public ActionResult Index()
-        {
-            List<AnimalType> animalTypes = new List<AnimalType>();
-            foreach(var animal in _animalTypeService.GetAllAnimalTypes())
-            {
-                animalTypes.Add(new AnimalType
-                {
-                   AnimalTypeID = animal.AnimalTypeId,
-                   Name = animal.Name
-                });
-            }
-            return View(animalTypes);
+        {         
+            return View(_animalTypeService.GetAllAnimalTypes());
         }
 
         public ActionResult Create()
@@ -40,17 +31,11 @@ namespace PetStore.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(AnimalType animalType)
+        public ActionResult Create(AnimalTypeModel animalType)
         {
-            var animal = new Repository.PocoClasses.AnimalType()
-            {
-                AnimalTypeId = animalType.AnimalTypeID,
-                Name = animalType.Name
-            };
-
             if (ModelState.IsValid)
             {
-                _animalTypeService.SaveAnimalType(animal);
+                _animalTypeService.SaveAnimalType(animalType);
                 return RedirectToAction("Index");
             }
 
@@ -71,11 +56,11 @@ namespace PetStore.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(AnimalType animalType)
+        public ActionResult Edit(AnimalTypeModel animalType)
         {
             if (ModelState.IsValid)
             {
-                //_animalTypeService.SaveAnimalType(animalType);
+                _animalTypeService.SaveAnimalType(animalType);
                 return RedirectToAction("Index");
             }
             return View(animalType);
