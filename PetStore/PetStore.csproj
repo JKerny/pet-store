@@ -176,6 +176,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Pet\PetData.cs" />
     <Compile Include="Repository\IAnimalService.cs" />
     <Compile Include="Repository\IPetRepositoryService.cs" />
     <Compile Include="Repository\DbContext\PetStoreContext.cs" />
@@ -239,7 +240,6 @@
     <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Areas\Admin\Views\Search\" />
     <Folder Include="Models\Animal\" />
-    <Folder Include="Models\Pet\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Search\" />
     <Folder Include="Views\Test\" />
