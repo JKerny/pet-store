@@ -130,14 +130,25 @@ namespace PetStore.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "PetID,Name,DateOfBirth,Weight,Description,AnimalTypeID")] Pet pet)
+        public ActionResult Edit(Pet model)
         {
+           
             if (ModelState.IsValid)
             {
-                //_petRepository.SavePet(pet);
+                var pet = new Repository.PocoClasses.Pet()
+                {
+                    Id = model.PetID,
+                    Name = model.Name,
+                    Description = model.Description,
+                    DateOfBirth = model.DateOfBirth,
+                    Weight = model.Weight,
+                    AnimalTypeId = model.AnimalTypeID
+                };
+
+                _petRepository.SavePet(pet);
                 return RedirectToAction("Index");
             }
-            var model = pet;
+            
             if (model != null)
             {
                 model.AnimalTypes = new SelectList(_animalService.GetAllAnimalTypes(), "AnimalTypeId", "Name");
