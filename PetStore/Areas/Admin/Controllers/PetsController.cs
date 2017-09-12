@@ -83,7 +83,7 @@ namespace PetStore.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create([Bind(Include = "PetID,Name,DateOfBirth,Weight,Description,AnimalTypeID")] Pet pet)
+        public ActionResult Create(Pet pet)
         {
             Repository.PocoClasses.Pet petDB = new Repository.PocoClasses.Pet()
             {
