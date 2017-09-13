@@ -22,6 +22,7 @@ namespace PetStore.Areas.Admin.Models.Pet
         [Required]
         [DisplayName("Date Of Birth")]
         [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         [ValidateDateRange]
         public DateTime DateOfBirth { get; set; }
 
