@@ -17,12 +17,21 @@ namespace PetStore.Areas.Admin.Controllers
     {
         private IAnimalService _animalTypeService;
         public AnimalTypeController(IAnimalService animalTypeService)
-        {;
+        {
             _animalTypeService = animalTypeService;
         }
         public ActionResult Index()
-        {         
-            return View(_animalTypeService.GetAllAnimalTypes());
+        {
+            var animals = _animalTypeService.GetAllAnimalTypes();
+            List<AnimalTypeModel> animalType = new List<AnimalTypeModel>();
+            foreach(var animal in animals)
+            {
+                animalType.Add(new AnimalTypeModel {
+                    Id = animal.AnimalTypeId,
+                    Name = animal.Name
+                });
+            }
+            return View(animalType);
         }
 
         public ActionResult Create()
@@ -33,9 +42,16 @@ namespace PetStore.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(AnimalTypeModel animalType)
         {
+            Repository.PocoClasses.AnimalType animal = new Repository.PocoClasses.AnimalType()
+            {
+                AnimalTypeId = animalType.Id,
+                Name = animalType.Name
+            };
+
+
             if (ModelState.IsValid)
             {
-                _animalTypeService.SaveAnimalType(animalType);
+                _animalTypeService.SaveAnimalType(animal);
                 return RedirectToAction("Index");
             }
 
@@ -58,9 +74,14 @@ namespace PetStore.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(AnimalTypeModel animalType)
         {
+            Repository.PocoClasses.AnimalType animal = new Repository.PocoClasses.AnimalType()
+            {
+                AnimalTypeId = animalType.Id,
+                Name = animalType.Name
+            };
             if (ModelState.IsValid)
             {
-                _animalTypeService.SaveAnimalType(animalType);
+                _animalTypeService.SaveAnimalType(animal);
                 return RedirectToAction("Index");
             }
             return View(animalType);

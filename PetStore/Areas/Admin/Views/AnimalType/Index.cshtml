@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PetStore.Areas.Admin.Models.Animal.AnimalType>
+﻿@model IEnumerable<PetStore.Areas.Admin.Models.Animal.AnimalTypeModel>
 
 @{
     ViewBag.Title = "Index";
@@ -25,9 +25,9 @@
             @Html.DisplayFor(x => animal.Name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = animal.AnimalTypeID }) |   
+            @Html.ActionLink("Edit", "Edit", new { id = animal.Id }) |   
             @{ var petCount = animal.Pets != null ? animal.Pets.Count() : 0; }
-            @Html.ActionLink("Delete", "Delete", new { id= animal.AnimalTypeID }, new { @class = "delete-animal",data_petcount = petCount})
+            @Html.ActionLink("Delete", "Delete", new { id= animal.Id }, new { @class = "delete-animal",data_petcount = petCount})
         </td>
     </tr>
 }
