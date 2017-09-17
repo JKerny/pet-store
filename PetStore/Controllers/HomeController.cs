@@ -10,8 +10,8 @@ namespace PetStore.Controllers
 {
     public class HomeController : Controller
     {
-        IPetRepositoryService _petService;
-        public HomeController(IPetRepositoryService petService)
+        IPetService _petService;
+        public HomeController(IPetService petService)
         {
             _petService = petService;
         }

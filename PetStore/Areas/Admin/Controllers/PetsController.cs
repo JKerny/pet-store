@@ -13,10 +13,10 @@ namespace PetStore.Areas.Admin.Controllers
 {
     public class PetsController : BaseController
     {
-        private IPetRepositoryService _petRepository;
+        private IPetService _petRepository;
         private IAnimalService _animalService;
 
-        public PetsController(IPetRepositoryService petRepository, IAnimalService animalService)
+        public PetsController(IPetService petRepository, IAnimalService animalService)
         {
             _animalService = animalService;
             _petRepository = petRepository;

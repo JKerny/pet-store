@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PetStore.Repository
 {
-    public interface IPetRepositoryService
+    public interface IPetService
     {
         List<Pet> GetAllPets();
         Pet GetPetById(Guid id);
@@ -18,15 +18,15 @@ namespace PetStore.Repository
         void DeletePet(Guid id);
     }
 
-    public class PetRepositoryService : IPetRepositoryService
+    public class PetService : IPetService
     {
-        IRepositoryBaseService _repositoryBase;
-       
+        IRepositoryBaseService _repositoryBase;       
       
-        public PetRepositoryService(IRepositoryBaseService repositoryBase)
+        public PetService(IRepositoryBaseService repositoryBase)
         {
             _repositoryBase = repositoryBase;
         }
+
         public List<Pet> GetAllPets()
         {            
             var pets = _repositoryBase.context.Pet.ToList();
