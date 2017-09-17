@@ -4,7 +4,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
-using identity.Models;
+using PetStore.Areas.Admin.Models.Identity;
+using PetStore;
 
 namespace identity
 {

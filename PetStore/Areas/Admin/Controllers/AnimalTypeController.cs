@@ -13,7 +13,7 @@ using PetStore.Repository;
 
 namespace PetStore.Areas.Admin.Controllers
 {
-    public class AnimalTypeController : BaseController
+    public class AnimalTypeController : Controller
     {
         private IAnimalService _animalTypeService;
         public AnimalTypeController(IAnimalService animalTypeService)
@@ -97,15 +97,6 @@ namespace PetStore.Areas.Admin.Controllers
                 
             }
             throw new HttpException(404, "Pet Not Found");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                context.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        }      
     }
 }

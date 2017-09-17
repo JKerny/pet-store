@@ -6,9 +6,11 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using identity.Models;
+using PetStore;
+using PetStore.Areas.Admin.Models.Identity;
+using PetStore.Areas.Admin.Controllers;
 
-namespace identity.Controllers
+namespace PetStore.Areas.Admin.Controllers
 {
     [Authorize]
     public class ManageController : Controller

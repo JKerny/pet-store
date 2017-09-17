@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace identity.Models
+namespace PetStore.Areas.Admin.Models.Identity
 {
     public class ExternalLoginConfirmationViewModel
     {
