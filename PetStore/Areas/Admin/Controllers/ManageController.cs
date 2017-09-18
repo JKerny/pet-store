@@ -11,9 +11,8 @@ using PetStore.Areas.Admin.Models.Identity;
 using PetStore.Areas.Admin.Controllers;
 
 namespace PetStore.Areas.Admin.Controllers
-{
-    [Authorize]
-    public class ManageController : Controller
+{    
+    public class ManageController : BaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;

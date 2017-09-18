@@ -12,8 +12,8 @@ using PetStore.Areas.Admin.Models.Animal;
 using PetStore.Repository;
 
 namespace PetStore.Areas.Admin.Controllers
-{
-    public class AnimalTypeController : Controller
+{    
+    public class AnimalTypeController : BaseController
     {
         private IAnimalService _animalTypeService;
         public AnimalTypeController(IAnimalService animalTypeService)

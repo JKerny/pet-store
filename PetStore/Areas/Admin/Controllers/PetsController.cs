@@ -11,6 +11,7 @@ using System.Collections.Generic;
 
 namespace PetStore.Areas.Admin.Controllers
 {
+    [Authorize]
     public class PetsController : Controller
     {
         private IPetService _petRepository;
