@@ -6,11 +6,14 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using PetStore.Areas.Admin.Models.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 
 namespace PetStore.Areas.Admin.Controllers
 {    
     public class AccountController : BaseController
     {
+        private ApplicationDbContext _context = new ApplicationDbContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -135,9 +138,12 @@ namespace PetStore.Areas.Admin.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
-        }
+            RegisterViewModel model = new RegisterViewModel();
+            model.Role = RolesSelectList();
 
+            return View(model);
+        }
+        
         //
         // POST: /Account/Register
         [HttpPost]
@@ -147,10 +153,17 @@ namespace PetStore.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser()
+                {
+                    UserName = model.Email,
+                    Email = model.Email                    
+                };
+                
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    var role = _context.Roles.Where(x => x.Id == model.RoleId.ToString()).Select(x => x.Name).FirstOrDefault();
+                    UserManager.AddToRole(user.Id, role);
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -163,9 +176,26 @@ namespace PetStore.Areas.Admin.Controllers
                 }
                 AddErrors(result);
             }
-
+            model.Role = RolesSelectList();
+            
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+
+        private List<SelectListItem> RolesSelectList()
+        {                     
+            var roles = _context.Roles.ToList();
+            List<SelectListItem> rolesDropDown = new List<SelectListItem>();
+            foreach (var role in roles)
+            {
+                rolesDropDown.Add(new SelectListItem()
+                {
+                    Text = role.Name,
+                    Value = role.Id
+                });
+            };
+            return rolesDropDown;
         }
 
         [HttpGet]

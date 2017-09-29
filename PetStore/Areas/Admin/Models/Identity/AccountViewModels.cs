@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace PetStore.Areas.Admin.Models.Identity
 {
@@ -63,7 +65,12 @@ namespace PetStore.Areas.Admin.Models.Identity
     }
 
     public class RegisterViewModel
-    {
+    {        
+        public IEnumerable<SelectListItem> Role { get; set; }
+
+        [Required]
+        public Guid RoleId { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -77,7 +84,7 @@ namespace PetStore.Areas.Admin.Models.Identity
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -96,7 +103,7 @@ namespace PetStore.Areas.Admin.Models.Identity
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
