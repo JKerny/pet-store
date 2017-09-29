@@ -168,6 +168,12 @@ namespace PetStore.Areas.Admin.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public ActionResult Users()
+        {
+            return View();
+        }
+
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
