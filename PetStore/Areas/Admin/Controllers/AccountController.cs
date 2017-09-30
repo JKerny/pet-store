@@ -8,6 +8,7 @@ using Microsoft.Owin.Security;
 using PetStore.Areas.Admin.Models.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
+using Common.Constants.Admin;
 
 namespace PetStore.Areas.Admin.Controllers
 {    
@@ -147,10 +148,10 @@ namespace PetStore.Areas.Admin.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = RoleTypes.Admin)]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
-        {
+        {            
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser()
