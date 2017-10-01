@@ -22,3 +22,9 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.user-name{
+    color:#999;
+    margin-top:15px;
+    float:right;
+}

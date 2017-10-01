@@ -1,4 +1,11 @@
-﻿$(document).ready(function () {
+﻿$(document).ready(function () 
+    {
+
+    $('.logOff').click(function () {
+        $("#logoutForm").submit();
+    }
+    )
+
     $('.delete-pet').click(function () {
         var flag = confirm("Are you sure you want to delete this pet?")
         if (flag) {
@@ -21,47 +28,47 @@
 
     });
 
-    $(window).scroll(function () {        
+    $(window).scroll(function () {
         if ($(window).scrollTop() == $(document).height() - $(window).height()) {
             GetPetData();
         }
     });
     var pageSize = 10;
     var pageIndex = 1;
-    function GetPetData() {        
+    function GetPetData() {
         $.ajax(
-        {
-            type: 'GET',
-            url: '/home/GetPaginatedPetData',
-            data: { "pageindex": pageIndex, "pagesize": pageSize },
-            dataType: 'json',
-            success: function (data) {
-                if (data != null) {
-                    for (var i = 0; i < data.length; i++) {
-                        $("table")
-                            .append(
-                            "<tr>" +
-                            "<td>" + data[i].AnimalType + "</td>" +
-                            "<td>" + data[i].Name + "</td>" +
-                            "<td>" + data[i].DateOfBirth + "</td>" +
-                            "<td>" + data[i].Weight + "</td>" +
-                            "</tr>"
-                            );
+            {
+                type: 'GET',
+                url: '/home/GetPaginatedPetData',
+                data: { "pageindex": pageIndex, "pagesize": pageSize },
+                dataType: 'json',
+                success: function (data) {
+                    if (data != null) {
+                        for (var i = 0; i < data.length; i++) {
+                            $("table")
+                                .append(
+                                "<tr>" +
+                                "<td>" + data[i].AnimalType + "</td>" +
+                                "<td>" + data[i].Name + "</td>" +
+                                "<td>" + data[i].DateOfBirth + "</td>" +
+                                "<td>" + data[i].Weight + "</td>" +
+                                "</tr>"
+                                );
+                        }
+                        pageIndex++;
                     }
-                    pageIndex++;
+                },
+                beforeSend: function () {
+                    $("#progress").show();
+                },
+                complete: function () {
+                    $("#progress").hide();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                    alert(thrownError);
                 }
-            },
-            beforeSend: function () {
-                $("#progress").show();
-            },
-            complete: function () {
-                $("#progress").hide();
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                alert(xhr.status);
-                alert(thrownError);
-            }
-        })
+            })
     }
 });
 
