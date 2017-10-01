@@ -202,7 +202,18 @@ namespace PetStore.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Users()
         {
-            return View();
+            var users = _context.Users.ToList();
+            var model = new List<UsersViewModel>();
+            foreach(var user in users)
+            {
+                model.Add(new UsersViewModel()
+                {
+                    UserName = user.UserName ?? string.Empty,
+                    Role = UserManager.GetRoles(user.Id).Any() ? UserManager.GetRoles(user.Id).FirstOrDefault().ToString() : string.Empty
+                });
+            }
+           
+            return View(model);
         }
 
         //

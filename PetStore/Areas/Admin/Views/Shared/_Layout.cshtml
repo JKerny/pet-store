@@ -23,8 +23,9 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Pets", "Index", "Pets")</li>
                     <li>@Html.ActionLink("Animal Types", "Index", "AnimalType")</li>
-                    <li>@Html.ActionLink("User Accounts", "Users", "Account")</li>
+                    <li> @Html.ActionLink("User Accounts", "Users", "Account")</li>                   
                 </ul>
+                <span class="login-name">@User.Identity.Name</span>
             </div>
         </div>
     </div>

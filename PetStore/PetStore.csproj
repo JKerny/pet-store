@@ -208,6 +208,7 @@
     <Compile Include="Areas\Admin\Models\Identity\AccountViewModels.cs" />
     <Compile Include="Areas\Admin\Models\Identity\IdentityModels.cs" />
     <Compile Include="Areas\Admin\Models\Identity\ManageViewModels.cs" />
+    <Compile Include="Areas\Admin\Models\Identity\UsersViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Pet\Pet.cs" />
     <Compile Include="Areas\Admin\Models\Pet\PetListing.cs" />
     <Compile Include="Controllers\HomeController.cs" />

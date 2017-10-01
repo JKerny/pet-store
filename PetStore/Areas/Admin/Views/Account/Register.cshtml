@@ -1,5 +1,6 @@
 ﻿@model PetStore.Areas.Admin.Models.Identity.RegisterViewModel
 @{
+    Layout = "~/areas/admin/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Register";
 }
 
@@ -32,7 +33,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Role, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownListFor(a => a.RoleId, Model.Role.Select(x => new SelectListItem { Value = x.Value, Text = x.Text }),"-- Select a role ")
+            @Html.DropDownListFor(a => a.RoleId, Model.Role.Select(x => new SelectListItem { Value = x.Value, Text = x.Text }),"Select a role ")
         </div>
     </div>
 
