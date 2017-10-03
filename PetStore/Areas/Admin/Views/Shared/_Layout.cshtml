@@ -20,10 +20,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Pets", "Index", "Pets")</li>
-                    <li>@Html.ActionLink("Animal Types", "Index", "AnimalType")</li>
-                    <li> @Html.ActionLink("User Accounts", "Users", "Account")</li>                     
+                    @{Html.RenderAction("MainNav", "Home");}                                   
                 </ul>
                 @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                 {

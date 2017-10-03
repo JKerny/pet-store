@@ -17,7 +17,7 @@ namespace PetStore.PetStore.DAL.Context
     {
         public DbSet<AnimalType> AnimalType { get; set; }
         public DbSet<Pet> Pet { get; set; }
-        
+        public DbSet<Pages> CmsPage { get; set; }
         public PetStoreContext() : base ("PetStoreContext")
         {
 

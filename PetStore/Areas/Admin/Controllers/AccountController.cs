@@ -18,6 +18,24 @@ namespace PetStore.Areas.Admin.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+        [Authorize(Roles = RoleTypes.Admin)]
+        [HttpGet]
+        public ActionResult Index()
+        {
+            var users = _context.Users.ToList();
+            var model = new List<UsersViewModel>();
+            foreach (var user in users)
+            {
+                model.Add(new UsersViewModel()
+                {
+                    UserName = user.UserName ?? string.Empty,
+                    Role = UserManager.GetRoles(user.Id).Any() ? UserManager.GetRoles(user.Id).FirstOrDefault().ToString() : string.Empty
+                });
+            }
+
+            return View(model);
+        }
+
         public AccountController()
         {
         }
@@ -136,6 +154,7 @@ namespace PetStore.Areas.Admin.Controllers
 
         //
         // GET: /Account/Register
+        [Authorize(Roles = RoleTypes.Admin)]
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -197,24 +216,7 @@ namespace PetStore.Areas.Admin.Controllers
                 });
             };
             return rolesDropDown;
-        }
-
-        [HttpGet]
-        public ActionResult Users()
-        {
-            var users = _context.Users.ToList();
-            var model = new List<UsersViewModel>();
-            foreach(var user in users)
-            {
-                model.Add(new UsersViewModel()
-                {
-                    UserName = user.UserName ?? string.Empty,
-                    Role = UserManager.GetRoles(user.Id).Any() ? UserManager.GetRoles(user.Id).FirstOrDefault().ToString() : string.Empty
-                });
-            }
-           
-            return View(model);
-        }
+        }      
 
         //
         // GET: /Account/ConfirmEmail

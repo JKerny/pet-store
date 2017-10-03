@@ -1,0 +1,10 @@
+﻿@model List<PetStore.Areas.Admin.Models.Home.PageViewModel>
+
+@{
+    Layout = null;
+}
+
+@foreach (var page in Model)
+{
+    <li>@Html.ActionLink(page.PageName, page.ActionName, page.ControllerName)</li>
+}
