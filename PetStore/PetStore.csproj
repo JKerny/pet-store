@@ -220,11 +220,11 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Pet\PetData.cs" />
     <Compile Include="Repository\ContentManagementService.cs" />
-    <Compile Include="Repository\IAnimalService.cs" />
-    <Compile Include="Repository\IPetRepositoryService.cs" />
+    <Compile Include="Repository\IAnimalRepository.cs" />
+    <Compile Include="Repository\IPetRepository.cs" />
     <Compile Include="Repository\DbContext\PetStoreContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\IRepositoryBaseService.cs" />
+    <Compile Include="Repository\IRepositoryBase.cs" />
     <Compile Include="Repository\PocoClasses\AnimalType.cs" />
     <Compile Include="Repository\PocoClasses\Pages.cs" />
     <Compile Include="Repository\PocoClasses\Pet.cs" />

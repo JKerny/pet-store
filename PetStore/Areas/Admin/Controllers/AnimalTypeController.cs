@@ -15,14 +15,14 @@ namespace PetStore.Areas.Admin.Controllers
 {    
     public class AnimalTypeController : BaseController
     {
-        private IAnimalService _animalTypeService;
-        public AnimalTypeController(IAnimalService animalTypeService)
+        private IAnimalRepository _animalRepository;
+        public AnimalTypeController(IAnimalRepository animalRepository)
         {
-            _animalTypeService = animalTypeService;
+            _animalRepository = animalRepository;
         }
         public ActionResult Index()
         {
-            var animals = _animalTypeService.GetAllAnimalTypes();
+            var animals = _animalRepository.GetAllAnimalTypes();
             List<AnimalTypeModel> animalType = new List<AnimalTypeModel>();
             foreach(var animal in animals)
             {
@@ -51,7 +51,7 @@ namespace PetStore.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                _animalTypeService.SaveAnimalType(animal);
+                _animalRepository.SaveAnimalType(animal);
                 return RedirectToAction("Index");
             }
 
@@ -62,7 +62,7 @@ namespace PetStore.Areas.Admin.Controllers
         {
             if (id != Guid.Empty)
             {
-                var animalType = _animalTypeService.GetAnimalTypeById(id);
+                var animalType = _animalRepository.GetAnimalTypeById(id);
                 if (animalType != null)
                 {
                     return View(animalType);
@@ -81,7 +81,7 @@ namespace PetStore.Areas.Admin.Controllers
             };
             if (ModelState.IsValid)
             {
-                _animalTypeService.SaveAnimalType(animal);
+                _animalRepository.SaveAnimalType(animal);
                 return RedirectToAction("Index");
             }
             return View(animalType);
@@ -92,7 +92,7 @@ namespace PetStore.Areas.Admin.Controllers
         {
             if (id != null)
             {              
-                _animalTypeService.DeleteAnimalType(id);
+                _animalRepository.DeleteAnimalType(id);
                 return RedirectToAction("Index");                
                 
             }

@@ -10,20 +10,20 @@ namespace PetStore.Controllers
 {
     public class HomeController : Controller
     {
-        IPetService _petService;
-        public HomeController(IPetService petService)
+        IPetRepository _petRepository;
+        public HomeController(IPetRepository petRepository)
         {
-            _petService = petService;
+            _petRepository = petRepository;
         }
         // GET: Home
         public ActionResult Index()
         {     
-            return View(_petService.GetAllPets().Take(10).ToList());
+            return View(_petRepository.GetAllPets().Take(10).ToList());
         }
         [HttpGet]
         public ActionResult GetPaginatedPetData(int pageIndex, int pageSize)
         {
-            var pets = _petService.GetAllPets().Skip(pageIndex * pageSize).Take(pageSize).ToList();
+            var pets = _petRepository.GetAllPets().Skip(pageIndex * pageSize).Take(pageSize).ToList();
 
             var model = new List<PetData>();
             foreach (var pet in pets)

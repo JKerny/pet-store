@@ -14,12 +14,12 @@ namespace PetStore.Areas.Admin.Controllers
     [Authorize]
     public class PetsController : Controller
     {
-        private IPetService _petRepository;
-        private IAnimalService _animalService;
+        private IPetRepository _petRepository;
+        private IAnimalRepository _animalRepository;
 
-        public PetsController(IPetService petRepository, IAnimalService animalService)
+        public PetsController(IPetRepository petRepository, IAnimalRepository animalRepository)
         {
-            _animalService = animalService;
+            _animalRepository = animalRepository;
             _petRepository = petRepository;
         }
         [HttpGet]
@@ -42,7 +42,7 @@ namespace PetStore.Areas.Admin.Controllers
             var model = new PetListing()
             {
                 Pets = pets,
-                AnimalTypes = new SelectList(_animalService.GetAllAnimalTypes(), "AnimalTypeID", "Name")
+                AnimalTypes = new SelectList(_animalRepository.GetAllAnimalTypes(), "AnimalTypeID", "Name")
             };
 
             return View(model);
@@ -67,7 +67,7 @@ namespace PetStore.Areas.Admin.Controllers
                 }
                 var model = new PetListing()
                 {
-                    AnimalTypes = new SelectList(_animalService.GetAllAnimalTypes(), "AnimalTypeID", "Name"),
+                    AnimalTypes = new SelectList(_animalRepository.GetAllAnimalTypes(), "AnimalTypeID", "Name"),
                     Pets = pets
                 };
                 return PartialView("_PetList", model);
@@ -79,7 +79,7 @@ namespace PetStore.Areas.Admin.Controllers
         public ActionResult Create()
         {
             var model = new Pet();
-            model.AnimalTypes = new SelectList(_animalService.GetAllAnimalTypes(), "AnimalTypeId", "Name");
+            model.AnimalTypes = new SelectList(_animalRepository.GetAllAnimalTypes(), "AnimalTypeId", "Name");
             return View(model);
         }
 
@@ -102,7 +102,7 @@ namespace PetStore.Areas.Admin.Controllers
             }
 
             var model = new Pet();
-            model.AnimalTypes = new SelectList(_animalService.GetAllAnimalTypes(), "AnimalTypeId", "Name");
+            model.AnimalTypes = new SelectList(_animalRepository.GetAllAnimalTypes(), "AnimalTypeId", "Name");
             return View(model);
         }
 
@@ -118,12 +118,12 @@ namespace PetStore.Areas.Admin.Controllers
                     Name = pet.Name,
                     DateOfBirth = pet.DateOfBirth,
                     Weight = pet.Weight,
-                    AnimalTypes = new SelectList(_animalService.GetAllAnimalTypes(), "AnimalTypeId", "Name"),
+                    AnimalTypes = new SelectList(_animalRepository.GetAllAnimalTypes(), "AnimalTypeId", "Name"),
                     AnimalTypeID = pet.AnimalTypeId
                 };
                 if (model != null)
                 {
-                    model.AnimalTypes = new SelectList(_animalService.GetAllAnimalTypes(), "AnimalTypeId", "Name");
+                    model.AnimalTypes = new SelectList(_animalRepository.GetAllAnimalTypes(), "AnimalTypeId", "Name");
                     return View(model);
                 }
             }
@@ -152,7 +152,7 @@ namespace PetStore.Areas.Admin.Controllers
             
             if (model != null)
             {
-                model.AnimalTypes = new SelectList(_animalService.GetAllAnimalTypes(), "AnimalTypeId", "Name");
+                model.AnimalTypes = new SelectList(_animalRepository.GetAllAnimalTypes(), "AnimalTypeId", "Name");
                 return View(model);
             }
             throw new HttpException(404, "System Error");

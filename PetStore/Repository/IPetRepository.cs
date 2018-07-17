@@ -10,19 +10,18 @@ using System.Threading.Tasks;
 
 namespace PetStore.Repository
 {
-    public interface IPetService
-    {
+    public interface IPetRepository    {
         List<Pet> GetAllPets();
         Pet GetPetById(Guid id);
         void SavePet(Pet pet);
         void DeletePet(Guid id);
     }
 
-    public class PetService : IPetService
+    public class PetRepository : IPetRepository
     {
-        IRepositoryBaseService _repositoryBase;       
+        IRepositoryBase _repositoryBase;       
       
-        public PetService(IRepositoryBaseService repositoryBase)
+        public PetRepository(IRepositoryBase repositoryBase)
         {
             _repositoryBase = repositoryBase;
         }
