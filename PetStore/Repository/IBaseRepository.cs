@@ -6,13 +6,13 @@ using System.Web;
 
 namespace PetStore.Repository
 {
-    public interface IRepositoryBase
+    public interface IBaseRepository
     {
-        PetStoreContext context { get;}
+        PetStoreContext Context { get;}
     }
-    public class RepositoryBase : IRepositoryBase
+    public class RepositoryBase : IBaseRepository
     {
-        PetStoreContext IRepositoryBase.context { get
+        PetStoreContext IBaseRepository.Context { get
             {
                return new PetStoreContext();
             }

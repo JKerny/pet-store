@@ -19,27 +19,27 @@ namespace PetStore.Repository
 
     public class PetRepository : IPetRepository
     {
-        IRepositoryBase _repositoryBase;       
+        IBaseRepository _baseRepository;       
       
-        public PetRepository(IRepositoryBase repositoryBase)
+        public PetRepository(IBaseRepository baseRepository)
         {
-            _repositoryBase = repositoryBase;
+            _baseRepository = baseRepository;
         }
 
         public List<Pet> GetAllPets()
         {            
-            var pets = _repositoryBase.context.Pet.ToList();
+            var pets = _baseRepository.Context.Pet.ToList();
             return pets;
         }
 
         public Pet GetPetById(Guid id)
         {
-            return _repositoryBase.context.Pet.Find(id);
+            return _baseRepository.Context.Pet.Find(id);
         }
 
         public void SavePet(Pet pet)
         {
-            var _context = _repositoryBase.context;
+            var _context = _baseRepository.Context;
             if (pet.Id == Guid.Empty)
             {
                 pet.Id = Guid.NewGuid();
@@ -55,7 +55,7 @@ namespace PetStore.Repository
 
         public void DeletePet(Guid id)
         {
-            var _context = _repositoryBase.context;
+            var _context = _baseRepository.Context;
             var pet = _context.Pet.Find(id);
             _context.Pet.Remove(pet);
             _context.SaveChanges();

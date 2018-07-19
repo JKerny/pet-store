@@ -13,15 +13,15 @@ namespace PetStore.Repository
 
     public class ContentManagementService : IContentManagementService
     {
-        IRepositoryBase _repositoryBase;
+        IBaseRepository _repositoryBase;
 
-        public ContentManagementService(IRepositoryBase repositoryBase)
+        public ContentManagementService(IBaseRepository repositoryBase)
         {
             _repositoryBase = repositoryBase;
         }
         public List<Pages> GetCmsPages()
         {
-            var pages =  _repositoryBase.context.CmsPage.ToList();
+            var pages =  _repositoryBase.Context.CmsPage.ToList();
             return pages;
         }
     }

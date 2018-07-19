@@ -10,17 +10,18 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace PetStore.Areas.Admin.Controllers
-{
-    [Authorize]
+{    
     public class PetsController : Controller
     {
         private IPetRepository _petRepository;
         private IAnimalRepository _animalRepository;
+        private readonly ICrudOperationsRepository _crudOperationsRepository;
 
-        public PetsController(IPetRepository petRepository, IAnimalRepository animalRepository)
+        public PetsController(IPetRepository petRepository, IAnimalRepository animalRepository, ICrudOperationsRepository crudOperationsRepository)
         {
             _animalRepository = animalRepository;
             _petRepository = petRepository;
+            _crudOperationsRepository = crudOperationsRepository;
         }
         [HttpGet]
         public ActionResult Index()
@@ -163,10 +164,15 @@ namespace PetStore.Areas.Admin.Controllers
         {
             if (id != Guid.Empty)
             {
-                _petRepository.DeletePet(id);
-                return RedirectToAction("Index");
+                var pet = _petRepository.GetPetById(id);
+                if(pet == null)
+                {
+                    throw new HttpException(404, "Pet Not Found");
+                }
+                _crudOperationsRepository.DeleteItem(pet);                
             }
-            throw new HttpException(404, "Pet Not Found");
+            return RedirectToAction("Index");
+
         }
 
       

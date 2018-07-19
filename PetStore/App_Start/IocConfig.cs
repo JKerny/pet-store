@@ -28,7 +28,8 @@ namespace PetStore.App_Start
             var servicesTypes = servicesAssembly
                 .GetTypes()
                 .Where(t => !t.IsInterface && !t.IsAbstract &&
-                    (t.Name.EndsWith("Service") || t.Name.EndsWith("Integrator")) &&
+                    (t.Name.EndsWith("Service") || t.Name.EndsWith("Integrator")) 
+                    || t.Name.EndsWith("Repository") &&
                     t.GetInterface("I" + t.Name, false) != null)
                 .ToArray();
             builder.RegisterTypes(servicesTypes).AsImplementedInterfaces();                

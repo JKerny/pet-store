@@ -18,8 +18,8 @@ namespace PetStore.Repository
 
     public class AnimalRepository : IAnimalRepository
     {
-        IRepositoryBase _repositoryBase;
-        public AnimalRepository(IRepositoryBase repositoryBase)
+        IBaseRepository _repositoryBase;
+        public AnimalRepository(IBaseRepository repositoryBase)
         {
             _repositoryBase = repositoryBase;
         }
@@ -27,7 +27,7 @@ namespace PetStore.Repository
         {     
             if(id != Guid.Empty)
             {
-                var _context = _repositoryBase.context;
+                var _context = _repositoryBase.Context;
                 var animalType = _context.AnimalType.Find(id);
                 var associatedPets = animalType.Pets.ToList();
                 foreach (var pet in associatedPets)
@@ -41,7 +41,7 @@ namespace PetStore.Repository
 
         public List<AnimalType> GetAllAnimalTypes()
         {
-            return _repositoryBase.context.AnimalType.ToList();
+            return _repositoryBase.Context.AnimalType.ToList();
         }
 
         public AnimalType GetAnimalTypeById(Guid id)
@@ -49,7 +49,7 @@ namespace PetStore.Repository
             AnimalType animalType = null;
             if (id != Guid.Empty)
             {
-                var _context = _repositoryBase.context;
+                var _context = _repositoryBase.Context;
                 animalType = _context.AnimalType.Find(id);               
             }
             return animalType;
@@ -57,7 +57,7 @@ namespace PetStore.Repository
 
         public void SaveAnimalType(AnimalType animal)
         {
-            var _context = _repositoryBase.context;
+            var _context = _repositoryBase.Context;
             if (animal.AnimalTypeId == Guid.Empty)
             {
                 animal.AnimalTypeId = Guid.NewGuid();
