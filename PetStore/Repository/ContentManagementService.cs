@@ -21,7 +21,7 @@ namespace PetStore.Repository
         }
         public List<Pages> GetCmsPages()
         {
-            var pages =  _repositoryBase.context.CmsPage.ToList();
+            var pages =  _repositoryBase.Context.CmsPage.ToList();
             return pages;
         }
     }

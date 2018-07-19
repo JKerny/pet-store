@@ -11,7 +11,7 @@ namespace PetStoreTest
         public void GetPetByID_InvalidID_ReturnsNull()
         {
             //Arrange
-            var petRepository = new PetRepository(new RepositoryBase());
+            var petRepository = new PetRepository(new BaseRepository());
             //Act
             var noPetFound = petRepository.GetPetById(Guid.Empty);
             //Assert
