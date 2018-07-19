@@ -19,9 +19,9 @@ namespace PetStore.Repository
 
     public class PetRepository : IPetRepository
     {
-        IRepositoryBase _repositoryBase;       
+        IBaseRepository _repositoryBase;       
       
-        public PetRepository(IRepositoryBase repositoryBase)
+        public PetRepository(IBaseRepository repositoryBase)
         {
             _repositoryBase = repositoryBase;
         }
@@ -34,7 +34,16 @@ namespace PetStore.Repository
 
         public Pet GetPetById(Guid id)
         {
-            return _repositoryBase.context.Pet.Find(id);
+            try
+            {
+                var pet = _repositoryBase.context.Pet.Find(id);
+                return pet;
+            }
+            catch
+            {
+                return null;
+            }
+            
         }
 
         public void SavePet(Pet pet)

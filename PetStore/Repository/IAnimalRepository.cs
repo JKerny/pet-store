@@ -18,8 +18,8 @@ namespace PetStore.Repository
 
     public class AnimalRepository : IAnimalRepository
     {
-        IRepositoryBase _repositoryBase;
-        public AnimalRepository(IRepositoryBase repositoryBase)
+        IBaseRepository _repositoryBase;
+        public AnimalRepository(IBaseRepository repositoryBase)
         {
             _repositoryBase = repositoryBase;
         }

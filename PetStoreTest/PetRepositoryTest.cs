@@ -8,8 +8,14 @@ namespace PetStoreTest
     public class PetRepositoryTest
     {
         [TestMethod]
-        public void GetAllPetsNotNull()
+        public void GetPetByID_InvalidID_ReturnsNull()
         {
+            //Arrange
+            var petRepository = new PetRepository(new RepositoryBase());
+            //Act
+            var noPetFound = petRepository.GetPetById(Guid.Empty);
+            //Assert
+            Assert.IsNull(noPetFound);
             
         }
     }

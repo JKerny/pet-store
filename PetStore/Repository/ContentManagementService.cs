@@ -13,9 +13,9 @@ namespace PetStore.Repository
 
     public class ContentManagementService : IContentManagementService
     {
-        IRepositoryBase _repositoryBase;
+        IBaseRepository _repositoryBase;
 
-        public ContentManagementService(IRepositoryBase repositoryBase)
+        public ContentManagementService(IBaseRepository repositoryBase)
         {
             _repositoryBase = repositoryBase;
         }

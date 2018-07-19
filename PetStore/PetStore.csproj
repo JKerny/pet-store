@@ -224,7 +224,7 @@
     <Compile Include="Repository\IPetRepository.cs" />
     <Compile Include="Repository\DbContext\PetStoreContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\IRepositoryBase.cs" />
+    <Compile Include="Repository\IBaseRepository.cs" />
     <Compile Include="Repository\PocoClasses\AnimalType.cs" />
     <Compile Include="Repository\PocoClasses\Pages.cs" />
     <Compile Include="Repository\PocoClasses\Pet.cs" />
