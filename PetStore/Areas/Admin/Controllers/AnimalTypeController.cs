@@ -15,7 +15,7 @@ namespace PetStore.Areas.Admin.Controllers
 {    
     public class AnimalTypeController : BaseController
     {
-        private IAnimalRepository _animalRepository;
+        private readonly IAnimalRepository _animalRepository;
         public AnimalTypeController(IAnimalRepository animalRepository)
         {
             _animalRepository = animalRepository;

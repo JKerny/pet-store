@@ -12,7 +12,7 @@ namespace PetStore.Areas.Admin.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        IContentManagementService _contentManagementService;
+        private readonly IContentManagementService _contentManagementService;
         public HomeController(IContentManagementService contentManagementService)
         {
             _contentManagementService = contentManagementService;

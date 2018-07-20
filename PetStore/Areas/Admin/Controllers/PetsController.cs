@@ -14,8 +14,8 @@ namespace PetStore.Areas.Admin.Controllers
     [Authorize]
     public class PetsController : Controller
     {
-        private IPetRepository _petRepository;
-        private IAnimalRepository _animalRepository;
+        private readonly IPetRepository _petRepository;
+        private readonly IAnimalRepository _animalRepository;
 
         public PetsController(IPetRepository petRepository, IAnimalRepository animalRepository)
         {
