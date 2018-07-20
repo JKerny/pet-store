@@ -8,11 +8,11 @@ namespace PetStore.Repository
 {
     public interface IBaseRepository
     {
-        PetStoreContext context { get;}
+        PetStoreContext Context { get;}
     }
     public class BaseRepository : IBaseRepository
     {
-        PetStoreContext IBaseRepository.context { get
+        PetStoreContext IBaseRepository.Context { get
             {
                return new PetStoreContext();
             }
